@@ -1,0 +1,20 @@
+cage-name: snake cage
+	cage-limit: 3
+	current-species: snake
+	Animal 
+		animal-ID: SN7386
+		name: Mike
+		sex: Female
+		species: snake
+	Keeper 
+		keeper-ID: KP6146
+		name: Gavin Ross
+	Keeper 
+		keeper-ID: KP6439
+		name: Lauren Ross
+cage-name: bird cage
+	cage-limit: 1
+	current-species: null
+cage-name: Zebras
+	cage-limit: 5
+	current-species: null
