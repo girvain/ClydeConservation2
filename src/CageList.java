@@ -53,6 +53,17 @@ public class CageList {
         return null;
     }
 
+    public Animal bigSearch(String animalId) {
+        for (Cage cage : cagesArray) {
+            for (String animal : cage.getAnimalTreeMap().keySet()) {
+                if (animal.equals(animalId)) {
+                    return cage.getAnimalTreeMap().get(animal);
+                }
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Cage> getCagesArray() {
         return cagesArray;
     }

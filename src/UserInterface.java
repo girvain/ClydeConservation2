@@ -54,7 +54,7 @@ public class UserInterface{
                 removeKeeperLoop();
                 break;
             case 9 :
-                Animal animal = animalSearchInterface();
+                Animal animal = animalBigSearchInterface();
                 if (animal != null) {
                     editAnimalDetails(animal);
                 }
@@ -88,17 +88,15 @@ public class UserInterface{
     }
 
     /**
-     * This method takes user input and seraches for a match in the course array.
-     * It then returns the course object if it's a match, otherwise it keeps looping.
-     * MAYBE i SHOULD FIX THE LOOP!
+     * This method takes user input and seraches for a match in the cageList.
+     * It then returns the cage object if it's a match, otherwise it keeps looping.
      * @return
      */
     public Cage cageSelector() {
-        //Scanner scanner = new Scanner(System.in);
         Cage matchingCage;
         while (true) {
             System.out.println("Please enter a cage?");
-            // search the courses array for a match
+            // search the cageList array for a match
             matchingCage = cageList.cageSearch(scanner.nextLine());
             // if the user input is a match from the cageList then
             // matching course will contain a cage object.
@@ -117,7 +115,6 @@ public class UserInterface{
      * SHOULD THIS BE IT'S OWN CLASS?
      */
     public Animal createAnimalInputLoop() {
-
         String name = "";
         String sex = ""; // variables to pass input
         String species = "";
@@ -267,6 +264,28 @@ public class UserInterface{
             if (animalRef != null) {
                 Animal animal = cage.getAnimalTreeMap().get(animalRef); // get the animal if its there
                 return animal;
+            }
+            else if (input.toLowerCase().equals("exit")) {
+                break; // end the loop coz the user typed exit
+            }
+            else
+                System.out.println("Animal not in cage, try again or type exit");
+        }
+        return null;
+    }
+
+    /**
+     * Same as above but uses the bigSearch() that looks through a the cages instead of
+     * selecting one at the start.
+     */
+    public Animal animalBigSearchInterface() {
+        while (true) {
+            System.out.println("Enter animal ID to search for animal");
+            String input = scanner.nextLine();
+            Animal animalRef = cageList.bigSearch(input);
+            if (animalRef != null) {
+                animalRef.displayAnimalDetails(); // display the animal before return
+                return animalRef;
             }
             else if (input.toLowerCase().equals("exit")) {
                 break; // end the loop coz the user typed exit
