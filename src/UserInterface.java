@@ -48,7 +48,7 @@ public class UserInterface{
                 cageSelector().printKeepers();
                 break;
             case 7 : // The if statements are to get the output from the remove methods
-                removeAnimalLoop();
+                removeAnimalLoopBigSearch();
                 break;
             case 8 :
                 removeKeeperLoop();
@@ -291,6 +291,7 @@ public class UserInterface{
             if (animalRef != null) {
                 System.out.println("Your result is: ");
                 animalRef.displayAnimalDetails(); // display the animal before return
+                System.out.println("Cage: " + cageList.getLastCageAccessed()); // this will be where the animal is.
                 return animalRef;
             }
             else if (input.toLowerCase().equals("exit")) {
@@ -350,7 +351,18 @@ public class UserInterface{
 
     }
 
+    public void removeAnimalLoopBigSearch() {
+        System.out.println("Enter animal ID");
+        String input = scanner.nextLine();
+        Animal animal = cageList.bigSearch(input);
+        if (animal != null) {
+            cageList.getLastCageAccessed().removeAnimal(animal.getAnimalId());
+            System.out.println("Animal removed successfully");
+        }
+        else
+            System.out.println("Animal not in the cage");
 
+    }
 
     public void removeKeeperLoop() {
         Cage cage = cageSelector();

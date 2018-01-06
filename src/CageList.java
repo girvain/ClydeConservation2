@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class CageList {
 
     private ArrayList<Cage> cagesArray;
+    private Cage lastCageAccessed;
 
     //Constructor
     CageList() {
@@ -19,7 +20,6 @@ public class CageList {
      * array tool method printArray.
      */
     public void printCages() {
-        String[] coursesTemp = new String[cagesArray.size()];
         for(Cage i : cagesArray) {
             System.out.println("cage: " + i.getCageNumber());
             System.out.println("species: " + i.getCurrentSpecies());
@@ -53,10 +53,18 @@ public class CageList {
         return null;
     }
 
+    /**
+     * Method to search through all the cages (treeMaps) to find a matching animal ID.
+     * It sets the last cage accessed to be the current cage it is in when it finds an animal.
+     * Lastly it will return the animal if it's a match.
+     * @param animalId
+     * @return
+     */
     public Animal bigSearch(String animalId) {
         for (Cage cage : cagesArray) {
             for (String animal : cage.getAnimalTreeMap().keySet()) {
                 if (animal.equals(animalId)) {
+                    lastCageAccessed = cage;
                     return cage.getAnimalTreeMap().get(animal);
                 }
             }
@@ -66,5 +74,9 @@ public class CageList {
 
     public ArrayList<Cage> getCagesArray() {
         return cagesArray;
+    }
+
+    public Cage getLastCageAccessed() {
+        return lastCageAccessed;
     }
 }
