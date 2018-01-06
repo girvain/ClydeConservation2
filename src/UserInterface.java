@@ -59,13 +59,15 @@ public class UserInterface{
                     editAnimalDetails(animal);
                 }
                 break;
+            case 10 :
+                Animal animal2 = animalBigSearchInterface();
+                break;
         }
-
         //fake recursion
-        if (input > 10 || input < 1) {
+        if (input > 11 || input < 1) {
             interacter("Invalid option, enter another choice");
         }
-        else if (input == 10) {
+        else if (input == 11) {
             saveData();
             System.out.println("Goodbye");
             scanner.close();
@@ -84,7 +86,8 @@ public class UserInterface{
         System.out.println("7- Remove an animal from a cage");
         System.out.println("8- Remove a keeper of a cage");
         System.out.println("9- Edit Animal details");
-        System.out.println("10- Exit");
+        System.out.println("10- Search for an animal");
+        System.out.println("11- Exit");
     }
 
     /**
@@ -119,7 +122,7 @@ public class UserInterface{
         String sex = ""; // variables to pass input
         String species = "";
         String animalId = "";
-        // / the loop will run and collect all the data in sequential order
+        // the loop will run and collect all the data in sequential order
         while (true) {
             boolean noErrors = true; // boolean to identify if there has been an input error
 
@@ -141,11 +144,15 @@ public class UserInterface{
                 break; // loop will only break if error is true
             }
         }
-        // finally, make the student and then return it.
+        // finally, make the animal and then return it.
         Animal animal = makeAnimal(name, sex, species);
         return animal;
     }
 
+    /**
+     * A method to use the checking method for cage capacity and species compatabiity
+     * before adding the animal to the cage.
+     */
     public void addAnimalWithChecks() {
         Cage cage = cageSelector(); // get a cage object
         Animal animal = createAnimalInputLoop(); // create an animal
@@ -203,6 +210,7 @@ public class UserInterface{
     }
 
     public void editAnimalDetailsMenuDisplay() {
+        System.out.println("\n Choose an option: ");
         System.out.println("1- Edit animal ID");
         System.out.println("2- Edit animal name");
         System.out.println("3- Edit animal sex");
@@ -219,21 +227,18 @@ public class UserInterface{
         int input = validate.validateInteger();
 
         switch (input) {
-            case 1 :
+            case 1:
                 System.out.println("Enter new animal ID");
                 animal.setAnimalId(scanner.nextLine());
                 break;
-            case 2 :
+            case 2:
                 System.out.println("Enter new animal name");
                 animal.setName(scanner.nextLine());
                 break;
-            case 3 :
+            case 3:
                 System.out.println("Enter new Sex");
                 animal.setSex(scanner.nextLine());
                 break;
-//            case 4 :
-//                animal.setSpecies(scanner.nextLine());
-//                break;
         }
         //fake recursion
         if (input > 4 || input < 1) {
@@ -284,6 +289,7 @@ public class UserInterface{
             String input = scanner.nextLine();
             Animal animalRef = cageList.bigSearch(input);
             if (animalRef != null) {
+                System.out.println("Your result is: ");
                 animalRef.displayAnimalDetails(); // display the animal before return
                 return animalRef;
             }
@@ -295,8 +301,6 @@ public class UserInterface{
         }
         return null;
     }
-
-
 
     /**
      * Method for creating a cage
@@ -327,6 +331,9 @@ public class UserInterface{
         return cage;
     }
 
+    /**
+     * Method to get the user to select a cage using the cageSelector, then
+     */
     public void removeAnimalLoop() {
         Cage cage = cageSelector();
         String animalId = "";
@@ -360,6 +367,8 @@ public class UserInterface{
         }
 
     }
+
+
 
     /**
      * Method to save the current state of the program to a text file. Uses the FileIO

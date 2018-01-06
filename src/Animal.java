@@ -5,10 +5,10 @@ public class Animal {
     private String species;
 
     public void displayAnimalDetails() {
-        System.out.println(getAnimalId());
-        System.out.println(getName());
-        System.out.println(getSpecies());
-        System.out.println(getSex());
+        System.out.println("Animal ID: " + getAnimalId());
+        System.out.println("Animal name: " + getName());
+        System.out.println("Animal species: " + getSpecies());
+        System.out.println("Animal sex: " + getSex());
     }
 
     public void idGenerator() {
