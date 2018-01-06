@@ -48,19 +48,19 @@ public class UserInterface{
                 cageSelector().printKeepers();
                 break;
             case 7 : // The if statements are to get the output from the remove methods
-                removeAnimalLoopBigSearch();
+                removeAnimalLoop();
                 break;
             case 8 :
                 removeKeeperLoop();
                 break;
             case 9 :
-                Animal animal = animalBigSearchInterface();
+                Animal animal = animalSearchInterface();
                 if (animal != null) {
                     editAnimalDetails(animal);
                 }
                 break;
             case 10 :
-                Animal animal2 = animalBigSearchInterface();
+                Animal animal2 = animalSearchInterface();
                 break;
         }
         //fake recursion
@@ -121,11 +121,9 @@ public class UserInterface{
         String name = "";
         String sex = ""; // variables to pass input
         String species = "";
-        String animalId = "";
         // the loop will run and collect all the data in sequential order
         while (true) {
             boolean noErrors = true; // boolean to identify if there has been an input error
-
             try {
                 System.out.println("Enter name:");
                 name = scanner.nextLine();
@@ -139,13 +137,16 @@ public class UserInterface{
                 System.out.println("Please enter the the right format");
                 noErrors = false; // change noError state to false coz error occurred
             }
-
             if (noErrors) {
                 break; // loop will only break if error is true
             }
         }
         // finally, make the animal and then return it.
-        Animal animal = makeAnimal(name, sex, species);
+        Animal animal = new Animal();
+        animal.setName(name);
+        animal.setSex(sex);
+        animal.setSpecies(species);
+        animal.idGenerator(); //IMPORTANT: generate this after object is made so species is not null
         return animal;
     }
 
@@ -169,23 +170,20 @@ public class UserInterface{
     }
 
     /**
-     * This is the same as the above method but it is specific to the subject object.
+     * This is the same as the above method but it is specific to the keeper object.
      * @return Subject
      */
-
     public Keeper addKeeperInputLoop() {
         String nameOfKeeper = "";
         // / the loop will run and collect all the data in sequential order
         while (true) {
             boolean noErrors = true; // boolean to identify if there has been an input error
-
             try {
                 System.out.println("Enter name of the Keeper:");
                 nameOfKeeper = scanner.nextLine();
             }catch (InputMismatchException e) {
                 System.out.println("Please enter the the right format");
             }
-
             if (noErrors) {
                 break; // loop will only break if error is true
             }
@@ -197,27 +195,6 @@ public class UserInterface{
     }
 
     /**
-     * Method to make creating a student quicker and more readable.
-     * returns student object.
-     */
-    public Animal makeAnimal(String name, String sex, String species) {
-        Animal animal = new Animal();
-        animal.setName(name);
-        animal.setSex(sex);
-        animal.setSpecies(species);
-        animal.idGenerator(); //IMPORTANT: generate this after object is made so species is not null
-        return animal;
-    }
-
-    public void editAnimalDetailsMenuDisplay() {
-        System.out.println("\n Choose an option: ");
-        System.out.println("1- Edit animal ID");
-        System.out.println("2- Edit animal name");
-        System.out.println("3- Edit animal sex");
-        System.out.println("4- Exit edit animal details");
-    }
-
-    /**
      * Method to take an animal as input and edit one or all of its attributes. Will loop
      * until exited.
      * @param animal
@@ -225,7 +202,6 @@ public class UserInterface{
     public void editAnimalDetails(Animal animal) {
         editAnimalDetailsMenuDisplay();
         int input = validate.validateInteger();
-
         switch (input) {
             case 1:
                 System.out.println("Enter new animal ID");
@@ -254,36 +230,22 @@ public class UserInterface{
     }
 
     /**
-     * Method for creating a loop interface to take user input to search for an animal. IT
-     * starts by selecting the right cage, then uses the search method from the cage class
-     * that returns either the string ref to the animal in treemap, or null. If it matches
-     * it will get the animal from the map then return it, otherwise is will loop until it
-     * gets a match or the user types exit.
+     * Quick utility method to make it easy to print options in editAnimalDetails()
      */
-    public Animal animalSearchInterface() {
-        Cage cage = cageSelector(); // get the cage
-        while (true) {
-            System.out.println("Enter animal ID to search for animal");
-            String input = scanner.nextLine();
-            String animalRef = cage.searchAnimal(input);
-            if (animalRef != null) {
-                Animal animal = cage.getAnimalTreeMap().get(animalRef); // get the animal if its there
-                return animal;
-            }
-            else if (input.toLowerCase().equals("exit")) {
-                break; // end the loop coz the user typed exit
-            }
-            else
-                System.out.println("Animal not in cage, try again or type exit");
-        }
-        return null;
+    public void editAnimalDetailsMenuDisplay() {
+        System.out.println("\n Choose an option: ");
+        System.out.println("1- Edit animal ID");
+        System.out.println("2- Edit animal name");
+        System.out.println("3- Edit animal sex");
+        System.out.println("4- Exit edit animal details");
     }
 
     /**
-     * Same as above but uses the bigSearch() that looks through a the cages instead of
-     * selecting one at the start.
+     * A method for searching through all the cages to find an animal by it's animal ID. It
+     * returns an animal object if it has a match or null if not. It will loop until it has
+     * a match of the user types exit.
      */
-    public Animal animalBigSearchInterface() {
+    public Animal animalSearchInterface() {
         while (true) {
             System.out.println("Enter animal ID to search for animal");
             String input = scanner.nextLine();
@@ -304,7 +266,8 @@ public class UserInterface{
     }
 
     /**
-     * Method for creating a cage
+     * Method for creating a cage object. Contains an additional error check because of use of
+     * Strings and integers. A cage can be a name, number or both.
      */
     public Cage addCageInputLoop() {
         String nameOfCage = "";
@@ -312,7 +275,6 @@ public class UserInterface{
         // / the loop will run and collect all the data in sequential order
         while (true) {
             boolean noErrors = true; // boolean to identify if there has been an input error
-
             try {
                 System.out.println("Enter name or number of the cage:");
                 nameOfCage = scanner.nextLine();
@@ -321,7 +283,6 @@ public class UserInterface{
             }catch (InputMismatchException e) {
                 System.out.println("Please enter the the right format");
             }
-
             if (noErrors) {
                 break; // loop will only break if error is true
             }
@@ -333,25 +294,10 @@ public class UserInterface{
     }
 
     /**
-     * Method to get the user to select a cage using the cageSelector, then
+     * Method to remove animals from the cage. Uses the search method to get the animal
+     * object, then if it is in the cage it will remove it.
      */
     public void removeAnimalLoop() {
-        Cage cage = cageSelector();
-        String animalId = "";
-        if (cage != null) {
-            System.out.println("Enter animal ID");
-            animalId = scanner.nextLine();
-            if (cage.searchAnimal(animalId) != null) {
-                cage.removeAnimal(animalId);
-                System.out.println("Animal removed successfully");
-            }
-            else
-                System.out.println("Animal not in the cage");
-        }
-
-    }
-
-    public void removeAnimalLoopBigSearch() {
         System.out.println("Enter animal ID");
         String input = scanner.nextLine();
         Animal animal = cageList.bigSearch(input);
@@ -359,11 +305,20 @@ public class UserInterface{
             cageList.getLastCageAccessed().removeAnimal(animal.getAnimalId());
             System.out.println("Animal removed successfully");
         }
-        else
-            System.out.println("Animal not in the cage");
-
+        else if (input.equals("exit")) {
+            return;
+        }
+        else {
+            System.out.println("Animal doesn't exist, try again or type exit");
+            removeAnimalLoop(); // recursion
+        }
     }
 
+    /**
+     * Method to remove a keeper from a cage. This method has to have the user select
+     * the cage because a keeper is not unique to one cage therefore cannot be by just
+     * taking a keeper ID.
+     */
     public void removeKeeperLoop() {
         Cage cage = cageSelector();
         String keeperId = "";
@@ -379,8 +334,6 @@ public class UserInterface{
         }
 
     }
-
-
 
     /**
      * Method to save the current state of the program to a text file. Uses the FileIO

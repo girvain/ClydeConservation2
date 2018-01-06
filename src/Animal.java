@@ -8,7 +8,7 @@ public class Animal {
         System.out.println("Animal ID: " + getAnimalId());
         System.out.println("Animal name: " + getName());
         System.out.println("Animal species: " + getSpecies());
-        System.out.println("Animal sex: " + getSex());
+        System.out.println("Animal sex: " + getSex() + "\n");
     }
 
     public void idGenerator() {
