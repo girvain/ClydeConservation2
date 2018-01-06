@@ -291,7 +291,7 @@ public class UserInterface{
             if (animalRef != null) {
                 System.out.println("Your result is: ");
                 animalRef.displayAnimalDetails(); // display the animal before return
-                System.out.println("Cage: " + cageList.getLastCageAccessed()); // this will be where the animal is.
+                System.out.println("Cage: " + cageList.getLastCageAccessed().getCageNumber()); // this will be where the animal is.
                 return animalRef;
             }
             else if (input.toLowerCase().equals("exit")) {
