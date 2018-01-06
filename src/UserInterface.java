@@ -151,7 +151,8 @@ public class UserInterface{
 
     /**
      * A method to use the checking method for cage capacity and species compatability
-     * before adding the animal to the cage.
+     * before adding the animal to the cage. This had to be created on top of the basic
+     * addAnimal() inside the CageList class because of the additional checking of the cage.
      */
     public void addAnimalWithChecks() {
         Cage cage = cageSelector(); // get a cage object
