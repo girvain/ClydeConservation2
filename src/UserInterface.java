@@ -42,7 +42,7 @@ public class UserInterface{
                 cageSelector().printAnimals();
                 break;
             case 5 :
-                cageSelector().addKeeper(addKeeperInputLoop());
+                cageSelector().addKeeper(createKeeperInputLoop());
                 break;
             case 6 :
                 cageSelector().printKeepers();
@@ -60,7 +60,7 @@ public class UserInterface{
                 }
                 break;
             case 10 :
-                Animal animal2 = animalSearchInterface();
+                animalSearchInterface();
                 break;
         }
         //fake recursion
@@ -115,7 +115,6 @@ public class UserInterface{
      * A method to create a loop and pass input to the makeStudent() method in the
      * Course class. Returns a student object with the data input by the user on the
      * CMD-line.
-     * SHOULD THIS BE IT'S OWN CLASS?
      */
     public Animal createAnimalInputLoop() {
         String name = "";
@@ -151,7 +150,7 @@ public class UserInterface{
     }
 
     /**
-     * A method to use the checking method for cage capacity and species compatabiity
+     * A method to use the checking method for cage capacity and species compatability
      * before adding the animal to the cage.
      */
     public void addAnimalWithChecks() {
@@ -173,7 +172,7 @@ public class UserInterface{
      * This is the same as the above method but it is specific to the keeper object.
      * @return Subject
      */
-    public Keeper addKeeperInputLoop() {
+    public Keeper createKeeperInputLoop() {
         String nameOfKeeper = "";
         // / the loop will run and collect all the data in sequential order
         while (true) {
@@ -343,6 +342,4 @@ public class UserInterface{
     public void saveData() {
         fileIO.writeCages(cageList.getCagesArray()); // uses the getter() to get a ref to courses array
     }
-
-
 }

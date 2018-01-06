@@ -19,7 +19,12 @@ cage-name: snake cage
 		name: Lauren Ross
 cage-name: bird cage
 	cage-limit: 1
-	current-species: null
+	current-species: bird
+	Animal 
+		animal-ID: BI7030
+		name: Frank
+		sex: female
+		species: bird
 cage-name: Zebras
 	cage-limit: 5
 	current-species: null

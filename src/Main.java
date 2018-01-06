@@ -6,7 +6,7 @@ public class Main extends JPanel {
 
     public static void main(String[] args) {
         UserInterface ui = new UserInterface();
-        ui.interacter("hello");
+        ui.interacter("Hello, welcome to the Clyde Conservation");
     }
 
 }
