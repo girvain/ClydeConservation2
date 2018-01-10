@@ -28,3 +28,16 @@ cage-name: bird cage
 cage-name: Zebras
 	cage-limit: 5
 	current-species: null
+cage-name: horse cage
+	cage-limit: 4
+	current-species: horse
+	Animal 
+		animal-ID: DO6229
+		name: Dave
+		sex: male
+		species: donkey
+	Animal 
+		animal-ID: HO1865
+		name: George
+		sex: male
+		species: horse
