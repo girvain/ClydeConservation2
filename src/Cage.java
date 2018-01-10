@@ -58,13 +58,56 @@ public class Cage {
         return true;
     }
 
+    /**
+     * Method to check for a species match. Returns true if the species matches, else returns
+     * false.
+     * @param animal
+     * @return
+     */
     public boolean speciesCheck(Animal animal) {
         // if currentSpecies is null then there is no preferred species so is the
         // same as matching species for compatability.
         if (currentSpecies == null) {
             return true;
         }
+        else if (speciesCompatCheck(animal)) {
+            return true;
+        }
         else if (currentSpecies.equals(animal.getSpecies())) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    /**
+     * Method to check for species compatability. Returns true if it's compatable, else false.
+     */
+    public boolean speciesCompatCheck(Animal animal) {
+        String rabbit = "rabbit";
+        String guineaPig = "guinea pig";
+        String donkey = "donkey";
+        String horse = "horse";
+        String marmosetMonkeys = "marmosetMonkeys";
+        String zebra = "zebra";
+        String lizard = "lizard";
+        String beardedDragon = "bearded dragon";
+
+        if (animal.getSpecies().equals(rabbit) && currentSpecies.equals(guineaPig) ||
+                animal.getSpecies().equals(guineaPig) && currentSpecies.equals(rabbit)) {
+            return true;
+        }
+        else if (animal.getSpecies().equals(donkey) && currentSpecies.equals(horse) ||
+                animal.getSpecies().equals(horse) && currentSpecies.equals(donkey)) {
+            return true;
+        }
+
+        else if (animal.getSpecies().equals(marmosetMonkeys) && currentSpecies.equals(zebra) ||
+                animal.getSpecies().equals(zebra) && currentSpecies.equals(marmosetMonkeys)){
+            return true;
+        }
+        else if (animal.getSpecies().equals(lizard) && currentSpecies.equals(beardedDragon) ||
+                animal.getSpecies().equals(beardedDragon) && currentSpecies.equals(lizard)) {
             return true;
         }
         else
