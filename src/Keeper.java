@@ -2,6 +2,7 @@ public class Keeper {
 
     private String keeperId;
     private String name;
+    private int cageCount = 0;
 
     public void idGenerator() {
         double rand = 0;
@@ -32,5 +33,17 @@ public class Keeper {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCageCount() {
+        return cageCount;
+    }
+
+    public void setCageCount(int cageCount) {
+        this.cageCount = cageCount;
+    }
+
+    public void increaseCAgeCount() {
+        cageCount += 1;
     }
 }

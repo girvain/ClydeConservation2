@@ -42,7 +42,7 @@ public class UserInterface{
                 cageSelector().printAnimals();
                 break;
             case 5 :
-                cageSelector().addKeeper(createKeeperInputLoop());
+                addKeeperWithChecks();
                 break;
             case 6 :
                 cageSelector().printKeepers();
@@ -166,6 +166,20 @@ public class UserInterface{
         else {
             cage.addAnimal(animal);
             System.out.println("Animal added successfully");
+        }
+    }
+
+    /**
+     * Method to add a keeper to the cage and perform additional checks
+     */
+    public void addKeeperWithChecks() {
+        Cage cage = cageSelector();
+        Keeper keeper = createKeeperInputLoop();
+        if (!cage.addKeeper(keeper)) {
+            System.out.println("This cage is full!");
+        }
+        else {
+            System.out.println("Keeper added to the cage.");
         }
     }
 

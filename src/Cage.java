@@ -114,8 +114,15 @@ public class Cage {
             return false;
     }
 
-    public void addKeeper(Keeper keeper) {
-        keeperTreeMap.put(keeper.getKeeperId(), keeper);
+    public boolean addKeeper(Keeper keeper) {
+        if (keeper.getCageCount() > 4) {
+            return false;
+        }
+        else {
+            keeperTreeMap.put(keeper.getKeeperId(), keeper);
+            keeper.increaseCAgeCount();
+            return true;
+        }
     }
 
     /**

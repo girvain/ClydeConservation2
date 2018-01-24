@@ -30,7 +30,7 @@ cage-name: Zebras
 	current-species: null
 cage-name: horse cage
 	cage-limit: 4
-	current-species: horse
+	current-species: donkey
 	Animal 
 		animal-ID: DO6229
 		name: Dave
@@ -41,3 +41,18 @@ cage-name: horse cage
 		name: George
 		sex: male
 		species: horse
+	Keeper 
+		keeper-ID: KP1643
+		name: Ross Crawford
+	Keeper 
+		keeper-ID: KP1772
+		name: Dave Smith
+	Keeper 
+		keeper-ID: KP2985
+		name: Frank Lamb
+	Keeper 
+		keeper-ID: KP6543
+		name: Jack Johnson
+	Keeper 
+		keeper-ID: KP9816
+		name: Johny smith
