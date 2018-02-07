@@ -6,7 +6,6 @@ import java.util.TreeMap;
 
 public class FileIO {
 
-    private Scanner scanner;
     private File file; // this is the file that will be used by the program
 
     FileIO() {
@@ -59,6 +58,10 @@ public class FileIO {
 
     }
 
+    /*
+    Method to write the keeper object data using the keeper data from each keeper object in the keepers
+    treemap passed in as a parameter. Takes treemap as input and a Printwriter object.
+     */
     public void writeKeepers(TreeMap<String, Keeper> array, PrintWriter out) {
         try {
             for (String keeper : array.keySet()){
@@ -78,9 +81,8 @@ public class FileIO {
 
     }
 
-
     /**
-     * takes the CourseList class as input. Uses a Scanner
+     * takes the class as input. Uses a Scanner
      * with the default space as the delimiter to iterate through the text file,
      * then initializes the objects accordingly to the CourseList class.
      * @param cageList

@@ -26,6 +26,10 @@ public class Cage {
         }
     }
 
+    /*
+    Method to remove animals. uses the built in features of treemap to search and remove an animal
+    based on the animals ID. Takes a string as input for animal's ID number.
+     */
     public void removeAnimal(String animalId) {
         animalTreeMap.remove(animalId);
         // after the removal, if the cage is empty reset the currentSpecies to null.
